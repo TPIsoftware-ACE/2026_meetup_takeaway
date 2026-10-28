@@ -27,7 +27,7 @@ TPIsoftware × OpenAI Select Partner「Meetup 技術小聚」的活動重點整�
 ├── src/
 │   ├── main.js                   # 建立 Vue App
 │   ├── App.vue                   # 組合頁首、各章節、頁尾；啟用捲動淡入
-│   ├── assets/tpi-logo.png       # TPIsoftware Logo
+│   ├── assets/                   # TPIsoftware Logo、OpenAI Select Partner 標章
 │   ├── styles/main.css           # 全站樣式（色彩 token、深色模式、版面）
 │   ├── data/content.js           # 互動區塊的內容資料（文字取自簡報）
 │   ├── utils/logic.js            # 純邏輯：效益試算、練習判定、篩選、自評等級…
@@ -102,7 +102,7 @@ npm test
 | --- | --- |
 | `logic.test.js` | 效益試算、時間格式、練習判定、名詞篩選、自評等級、服務選擇、資產卡文字 |
 | `content.test.js` | 內容資料一致性；導覽與段落連結的錨點都存在 |
-| `app.test.js` | 章節順序、標題、Logo、導覽、頁尾聯絡資訊、`TabList`、兩個 composable |
+| `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽、頁尾聯絡資訊、`TabList`、兩個 composable |
 | `keynote.test.js` | `StageExplorer`、`PilotChecklist`、`ToolPicker` |
 | `caseOne.test.js` | `WorkflowStepper`、`ReviewQuiz`、`RoleNotes` |
 | `caseTwo.test.js` | `FunctionCases`、`SavingsCalculator`、`WorkflowBuilder`（含剪貼簿） |

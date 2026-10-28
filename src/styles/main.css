@@ -60,12 +60,19 @@ button{font:inherit;color:inherit}
 .brand img{display:block;height:28px;width:auto}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand{background:#fff;padding:6px 10px}}
 :root[data-theme="dark"] .brand{background:#fff;padding:6px 10px}
+.brands{display:flex;align-items:center;gap:14px;flex:none}
+.partner{display:block;height:36px;width:auto;padding-left:14px;border-left:1px solid var(--line-2);box-sizing:content-box}
 .navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0;padding:4px;border:1px solid var(--line-2);border-radius:999px;background:color-mix(in srgb,var(--surface) 80%,transparent)}
 .navlinks::-webkit-scrollbar{display:none}
 .navlinks a{text-decoration:none;font-size:14px;padding:6px 14px;border-radius:999px;color:var(--ink-2);white-space:nowrap;transition:background .3s,color .3s}
 .navlinks a:hover{color:var(--p7);background:var(--p1)}
 .navlinks a.on{color:#fff;background:var(--grad);box-shadow:0 6px 16px -8px var(--glow)}
-@media (max-width:640px){.top .wrap{gap:10px}.brand img{height:18px}}
+@media (max-width:640px){
+  html{scroll-padding-top:128px}
+  .top .wrap{flex-wrap:wrap;gap:8px 10px;padding-block:10px}
+  .brand img{height:18px}.brands{gap:10px}.partner{height:28px;padding-left:10px}
+  .navlinks{margin-left:0;flex-basis:100%}
+}
 
 /* type */
 .eyebrow{font-family:var(--f-mono);font-size:14px;line-height:1.5;letter-spacing:.06em;color:var(--muted)}

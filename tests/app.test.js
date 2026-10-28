@@ -32,6 +32,13 @@ describe('TheHeader', () => {
     expect(brand.find('img').attributes('alt')).toBe('TPIsoftware')
   })
 
+  it('Logo 旁顯示 OpenAI Select Partner 標章', () => {
+    const imgs = mount(TheHeader).findAll('.brands img')
+    expect(imgs.map(i => i.attributes('alt'))).toEqual(['TPIsoftware', 'OpenAI Select Partner'])
+    expect(imgs[1].classes()).toContain('partner')
+    expect(imgs[1].attributes('src')).toBeTruthy()
+  })
+
   it('導覽列包含六個章節，第一個預設為目前章節', () => {
     const links = mount(TheHeader).findAll('.navlinks a')
     expect(links.map(a => a.text())).toEqual(['總覽', 'Keynote', '案例一', '案例二', '案例三', 'ACE'])
