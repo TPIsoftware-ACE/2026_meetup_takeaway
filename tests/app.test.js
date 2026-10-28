@@ -20,13 +20,15 @@ describe('App', () => {
     const ids = wrapper.findAll('main > section').map(s => s.attributes('id') || '')
     expect(ids).toEqual(['overview', '', 'keynote', 'case1', 'case2', 'case3', 'ace', ''])
     expect(wrapper.find('h1').text()).toBe('拒絕無效導入！OpenAI Select Partner 帶你打造安全 AI 工作流')
-    expect(wrapper.find('.hero .eyebrow').text()).toBe('Meetup 技術小聚 · TPIsoftware × OpenAI Select Partner')
+    expect(wrapper.text()).not.toContain('Meetup 技術小聚')
   })
 
-  it('封面使用活動主視覺，標題保留給螢幕閱讀器', () => {
+  it('封面為滿版活動主視覺、位於內容區上方，標題保留給螢幕閱讀器', () => {
     const wrapper = mount(App)
     expect(wrapper.find('h1').classes()).toContain('sr')
-    const cover = wrapper.find('.hero img.cover')
+    const cover = wrapper.find('.hero > img.cover')
+    expect(cover.element.nextElementSibling.classList.contains('wrap')).toBe(true)
+    expect(cover.attributes('sizes')).toBe('100vw')
     expect(cover.attributes('alt')).toContain('拒絕無效導入！')
     expect(cover.attributes('srcset')).toMatch(/1036w, .+ 2073w$/)
     expect(cover.attributes('width')).toBe('2073')
