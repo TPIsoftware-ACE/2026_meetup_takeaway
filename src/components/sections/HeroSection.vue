@@ -3,7 +3,7 @@
   <div class="wrap">
     <div class="eyebrow">Meetup 技術小聚 · TPIsoftware × OpenAI Select Partner</div>
     <h1 class="h1">拒絕無效導入！<br><span class="grad">OpenAI Select Partner</span><br>帶你打造安全 AI 工作流</h1>
-    <p class="lede">一場活動、三個案例、一條主線：AI 先從一個人、一條具體的工作開始，再變成整個組織能重複使用的工作方法。這頁把簡報拆成可以點、可以試的版本。</p>
+    <p class="lede">先從一個人、一條具體的工作開始，再變成整個組織能重複使用的工作方法。</p>
     <div class="legend" aria-label="顏色說明">
       <span class="pill ai"><i class="dot"></i>AI 負責</span>
       <span class="pill human"><i class="dot"></i>人負責</span>
