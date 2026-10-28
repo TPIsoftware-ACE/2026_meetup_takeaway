@@ -11,12 +11,13 @@ describe('StageExplorer 導入階段', () => {
     expect(wrapper.find('.stage-panel h3').text()).toBe('我知道怎麼用 AI')
     expect(wrapper.find('.stage-meter i').attributes('style')).toContain('width: 25%')
     expect(wrapper.findAll('.stage-btn').map(b => b.attributes('aria-pressed'))).toEqual(['true', 'false', 'false', 'false'])
+    expect(wrapper.findAll('.stage-btn .n').map(n => n.text())).toEqual(['自己使用', '實務分享', '團隊工作流程', '營運模式'])
   })
 
   it('點選階段後切換內容與進度條', async () => {
     const wrapper = mount(StageExplorer)
     await wrapper.findAll('.stage-btn')[2].trigger('click')
-    expect(wrapper.find('.stage-panel .eyebrow').text()).toBe('STAGE 03 · Team Workflow · 範圍：部門')
+    expect(wrapper.find('.stage-panel .eyebrow').text()).toBe('STAGE 03 · 團隊工作流程 · 範圍：部門')
     expect(wrapper.find('.stage-panel h3').text()).toBe('AI 進入工作流程')
     expect(wrapper.find('.kv').text()).toContain('AI 負責哪一段？誰確認？誰維護？')
     expect(wrapper.find('.stage-meter i').attributes('style')).toContain('width: 75%')

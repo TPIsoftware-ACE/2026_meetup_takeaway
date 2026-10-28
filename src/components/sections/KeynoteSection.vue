@@ -53,7 +53,7 @@ import ToolPicker from '../widgets/ToolPicker.vue'
 
     <div class="block">
       <div class="block-head">
-        <h3 class="h3">從個人擴散到部門，工作方式會截然不同</h3>
+        <h3 class="h3">從個人擴散到企業，工作方式會截然不同</h3>
         <p>個人生產力是起點，新型態工作流才是企業真正的價值。點選階段看看每一步在做什麼。</p>
       </div>
       <StageExplorer />

@@ -11,10 +11,10 @@ export const NAV = [
 
 /* ---------- Keynote ---------- */
 export const STAGES = [
-  { n: 'Individual', zh: '我知道怎麼用 AI', scope: '個人', look: '寫作、研究、分析、會議整理，個人生產力先提升。', ask: '哪些工作最困擾我？AI 能幫我省下哪一段時間？', next: '把自己好用的做法整理成別人看得懂的步驟。' },
-  { n: 'Share Practice', zh: '分享成功經驗、Agent', scope: '團隊', look: '把成功經驗和做好的 Agent 分享出去，讓同事照著用。', ask: '這套方法，其他人能不能跟著做？', next: '挑出團隊最有共識的 3–5 個流程。' },
-  { n: 'Team Workflow', zh: 'AI 進入工作流程', scope: '部門', look: 'AI 成為流程中固定的一段，有明確的資料邊界、Human Review 與 Owner。', ask: 'AI 負責哪一段？誰確認？誰維護？', next: '衡量 Usage、Time Saved、Adoption 與 Business Value。' },
-  { n: 'Operating Model', zh: '人與 AI 角色互動升級', scope: '企業', look: '新型態工作流成為組織的運作方式，成熟的 Workflow 沉澱成組織資產。', ask: '哪些工作方法值得被更多單位複用？', next: '讓種子在各單位持續長出可複用的 Workflow。' }
+  { n: '自己使用', zh: '我知道怎麼用 AI', scope: '個人', look: '寫作、研究、分析、會議整理，個人生產力先提升。', ask: '哪些工作最困擾我？AI 能幫我省下哪一段時間？', next: '把自己好用的做法整理成別人看得懂的步驟。' },
+  { n: '實務分享', zh: '分享成功經驗、Agent', scope: '團隊', look: '把成功經驗和做好的 Agent 分享出去，讓同事照著用。', ask: '這套方法，其他人能不能跟著做？', next: '挑出團隊最有共識的 3–5 個流程。' },
+  { n: '團隊工作流程', zh: 'AI 進入工作流程', scope: '部門', look: 'AI 成為流程中固定的一段，有明確的資料邊界、Human Review 與 Owner。', ask: 'AI 負責哪一段？誰確認？誰維護？', next: '衡量 Usage、Time Saved、Adoption 與 Business Value。' },
+  { n: '營運模式', zh: '人與 AI 角色互動升級', scope: '企業', look: '新型態工作流成為組織的運作方式，成熟的 Workflow 沉澱成組織資產。', ask: '哪些工作方法值得被更多單位複用？', next: '讓種子在各單位持續長出可複用的 Workflow。' }
 ]
 
 export const PILOT_ITEMS = [
