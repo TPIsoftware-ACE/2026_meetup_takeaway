@@ -1,0 +1,22 @@
+<template>
+  <section class="hero" id="overview">
+  <div class="wrap">
+    <div class="eyebrow">Meetup 技術小聚 · TPIsoftware × OpenAI Select Partner</div>
+    <h1 class="h1">拒絕無效導入！<br><span class="grad">OpenAI Select Partner</span><br>帶你打造安全 AI 工作流</h1>
+    <p class="lede">一場活動、三個案例、一條主線：AI 先從一個人、一條具體的工作開始，再變成整個組織能重複使用的工作方法。這頁把簡報拆成可以點、可以試的版本。</p>
+    <div class="legend" aria-label="顏色說明">
+      <span class="pill ai"><i class="dot"></i>AI 負責</span>
+      <span class="pill human"><i class="dot"></i>人負責</span>
+      <span class="pill info"><i class="dot"></i>資料來源</span>
+      <span class="pill action"><i class="dot"></i>產出與下一步</span>
+    </div>
+    <nav class="arc" aria-label="活動流程">
+      <a href="#keynote"><span class="eyebrow">Keynote · Henry</span><span class="q">為什麼是現在？</span><span class="t">產業趨勢與「從 5 個人開始」的導入方法</span></a>
+      <a href="#case1"><span class="eyebrow">案例一 · Tim</span><span class="q">一條工作怎麼做？</span><span class="t">從對話到工作應用，把 AI 放進工作流動的位置</span></a>
+      <a href="#case2"><span class="eyebrow">案例二 · Tim</span><span class="q">怎麼讓組織一起用？</span><span class="t">從個人工具到可複用的組織 Workflow</span></a>
+      <a href="#case3"><span class="eyebrow">案例三 · Blaze</span><span class="q">資訊該怎麼被看懂？</span><span class="t">用 Codex 把企業文件轉成互動介面</span></a>
+      <a href="#ace"><span class="eyebrow">ACE 顧問服務</span><span class="q">我們從哪開始？</span><span class="t">平台＋陪跑，找到適合的下一步</span></a>
+    </nav>
+  </div>
+</section>
+</template>
