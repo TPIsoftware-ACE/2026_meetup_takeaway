@@ -58,6 +58,22 @@ describe('TheHeader', () => {
     expect(links[0].classes()).toContain('on')
   })
 
+  it('導覽放不下時顯示水平捲軸，並隨捲動移動', async () => {
+    const wrapper = mount(TheHeader)
+    const nav = wrapper.find('.navlinks').element
+    expect(wrapper.find('.navbox').classes()).not.toContain('is-overflow')
+    expect(wrapper.find('.nav-track').attributes('aria-hidden')).toBe('true')
+    Object.defineProperty(nav, 'scrollWidth', { configurable: true, value: 400 })
+    Object.defineProperty(nav, 'clientWidth', { configurable: true, value: 300 })
+    nav.scrollLeft = 100
+    nav.dispatchEvent(new Event('scroll'))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.find('.navbox').classes()).toContain('is-overflow')
+    const style = wrapper.find('.nav-track i').attributes('style')
+    expect(style).toContain('width: 75%')
+    expect(style).toContain('left: 25%')
+  })
+
   it('頁首下方的閱讀進度條：每個章節一段，並標示目前章節', () => {
     const wrapper = mount(TheHeader)
     const bar = wrapper.find('.readbar')

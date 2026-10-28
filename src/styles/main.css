@@ -62,11 +62,14 @@ button{font:inherit;color:inherit}
 :root[data-theme="dark"] .brand{background:#fff;padding:6px 10px}
 .brands{display:flex;align-items:center;gap:14px;flex:none}
 .partner{display:block;height:36px;width:auto;padding-left:14px;border-left:1px solid var(--line-2);box-sizing:content-box}
-.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0;padding:4px;border:1px solid var(--line-2);border-radius:999px;background:color-mix(in srgb,var(--surface) 80%,transparent)}
+.navbox{margin-left:auto;min-width:0}
+.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;padding:4px;border:1px solid var(--line-2);border-radius:999px;background:color-mix(in srgb,var(--surface) 80%,transparent)}
 .navlinks::-webkit-scrollbar{display:none}
 .navlinks a{text-decoration:none;font-size:14px;padding:6px 14px;border-radius:999px;color:var(--ink-2);white-space:nowrap;transition:background .3s,color .3s}
 .navlinks a:hover{color:var(--p7);background:var(--p1)}
 .navlinks a.on{color:#fff;background:var(--grad);box-shadow:0 6px 16px -8px var(--glow)}
+.nav-track{display:none}
+.nav-track i{position:absolute;top:0;bottom:0;border-radius:99px;background:var(--grad)}
 
 /* reading progress：每段對應一個章節，長度依章節高度 */
 .readbar{position:absolute;left:0;right:0;bottom:-1px;height:4px;display:flex;gap:3px;transition:height .3s var(--ease)}
@@ -84,7 +87,8 @@ button{font:inherit;color:inherit}
   html{scroll-padding-top:128px}
   .top .wrap{flex-wrap:wrap;gap:8px 10px;padding-block:10px}
   .brand img{height:18px}.brands{gap:10px}.partner{height:28px;padding-left:10px}
-  .navlinks{margin-left:0;flex-basis:100%}
+  .navbox{margin-left:0;flex-basis:100%}
+  .navbox.is-overflow .nav-track{display:block;position:relative;height:3px;margin:6px 20px 0;border-radius:99px;background:color-mix(in srgb,var(--ink) 10%,transparent)}
 }
 
 /* type */

@@ -83,3 +83,13 @@ export function sectionProgress(starts, docHeight, pos) {
   const percent = Math.round(fills.reduce((a, f, i) => a + f * lengths[i], 0) / total * 100)
   return { lengths, fills, active, percent }
 }
+
+/** 水平捲動指示：可視比例決定滑塊長度，捲動位置決定滑塊起點（皆為軌道寬度的百分比）。 */
+export function scrollThumb(scrollLeft, scrollWidth, clientWidth) {
+  const overflow = scrollWidth - clientWidth > 1
+  if (!overflow) return { overflow, size: 100, offset: 0 }
+  const size = clientWidth / scrollWidth * 100
+  const maxLeft = scrollWidth - clientWidth
+  const ratio = Math.min(Math.max(scrollLeft / maxLeft, 0), 1)
+  return { overflow, size, offset: ratio * (100 - size) }
+}

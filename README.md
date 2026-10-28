@@ -33,6 +33,7 @@ TPIsoftware × OpenAI Select Partner「Meetup 技術小聚」的活動重點整�
 │   ├── utils/logic.js            # 純邏輯：效益試算、練習判定、篩選、自評等級…
 │   ├── composables/
 │   │   ├── useSectionProgress.js # 閱讀進度：目前章節、各段填滿比例（導覽與進度條共用）
+│   │   ├── useScrollThumb.js     # 手機導覽的水平捲軸位置
 │   │   └── useReveal.js          # 捲動進入畫面時淡入
 │   └── components/
 │       ├── layout/               # TheHeader、TheFooter
@@ -102,7 +103,7 @@ npm test
 | --- | --- |
 | `logic.test.js` | 效益試算、時間格式、練習判定、名詞篩選、自評等級、服務選擇、資產卡文字、閱讀進度 |
 | `content.test.js` | 內容資料一致性；導覽與段落連結的錨點都存在 |
-| `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽與閱讀進度條、頁尾聯絡資訊、`TabList`、兩個 composable |
+| `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽與閱讀進度條、頁尾聯絡資訊、`TabList`、composable |
 | `keynote.test.js` | `StageExplorer`、`PilotChecklist`、`ToolPicker` |
 | `caseOne.test.js` | `WorkflowStepper`、`ReviewQuiz`、`RoleNotes` |
 | `caseTwo.test.js` | `FunctionCases`、`SavingsCalculator`、`WorkflowBuilder`（含剪貼簿） |
@@ -128,6 +129,7 @@ npm test
 
 - 最小字級 14px（含手機版與 SVG 圖示文字）
 - 色彩語意：紫＝AI 負責、琥珀＝人負責、藍＝資料來源、墨色＝產出與下一步
+- 手機版導覽放不下時，下方顯示水平捲軸（自訂樣式，不受手機自動隱藏捲軸影響），提示可左右滑動看其他選項
 - 頁首下方的閱讀進度條：每段對應一個章節（長度依章節篇幅），已讀完的章節填滿，目前章節依捲動進度填入；滑鼠移上顯示章節名稱，點擊可跳段
 - 支援淺色／深色模式與手機版面；尊重系統「減少動態效果」設定
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   cardFields, cardText, countHits, filterTerms, formatDuration, formatHours,
   formatWorkDays, gradeCheck, monthlyHours, readingPosition, readinessLevel, resolveService,
-  sectionProgress
+  scrollThumb, sectionProgress
 } from '../src/utils/logic.js'
 import { F2, FIELDS, RD, TERMS } from '../src/data/content.js'
 
@@ -143,5 +143,23 @@ describe('閱讀進度', () => {
     expect(r.fills).toEqual([1, 1, 1])
     expect(r.active).toBe(2)
     expect(r.percent).toBe(100)
+  })
+})
+
+describe('導覽水平捲軸', () => {
+  it('內容放得下時不顯示', () => {
+    expect(scrollThumb(0, 300, 300)).toEqual({ overflow: false, size: 100, offset: 0 })
+    expect(scrollThumb(0, 301, 300).overflow).toBe(false)
+  })
+
+  it('滑塊長度依可視比例，起點依捲動位置', () => {
+    expect(scrollThumb(0, 400, 300)).toEqual({ overflow: true, size: 75, offset: 0 })
+    expect(scrollThumb(50, 400, 300)).toEqual({ overflow: true, size: 75, offset: 12.5 })
+    expect(scrollThumb(100, 400, 300)).toEqual({ overflow: true, size: 75, offset: 25 })
+  })
+
+  it('彈性捲動超出範圍時滑塊不超出軌道', () => {
+    expect(scrollThumb(-20, 400, 300).offset).toBe(0)
+    expect(scrollThumb(140, 400, 300).offset).toBe(25)
   })
 })
