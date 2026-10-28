@@ -4,7 +4,7 @@
     <div class="block">
       <div class="block-head">
         <div class="eyebrow">開場 · 每次跟企業對談都看到的現象</div>
-        <h2 class="h2">問題通常不在 AI 夠不夠強</h2>
+        <h2 class="h2">問題已經不在 AI 夠不夠強</h2>
       </div>
       <div class="observe">
         <div><h4>員工其實已經在用了</h4><p>Shadow AI 早就在發生。企業要決定的是納管，還是假裝沒看到。</p></div>
