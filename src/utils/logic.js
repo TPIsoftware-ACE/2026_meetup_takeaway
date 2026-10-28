@@ -84,12 +84,16 @@ export function sectionProgress(starts, docHeight, pos) {
   return { lengths, fills, active, percent }
 }
 
-/** 水平捲動指示：可視比例決定滑塊長度，捲動位置決定滑塊起點（皆為軌道寬度的百分比）。 */
-export function scrollThumb(scrollLeft, scrollWidth, clientWidth) {
-  const overflow = scrollWidth - clientWidth > 1
-  if (!overflow) return { overflow, size: 100, offset: 0 }
-  const size = clientWidth / scrollWidth * 100
+/** 水平捲動的兩端狀態：是否放不下、左右兩側是否還有被遮住的項目（容許 1px 誤差）。 */
+export function scrollEdges(scrollLeft, scrollWidth, clientWidth) {
   const maxLeft = scrollWidth - clientWidth
-  const ratio = Math.min(Math.max(scrollLeft / maxLeft, 0), 1)
-  return { overflow, size, offset: ratio * (100 - size) }
+  const overflow = maxLeft > 1
+  return { overflow, canLeft: overflow && scrollLeft > 1, canRight: overflow && scrollLeft < maxLeft - 1 }
+}
+
+/** 捲動超過這個距離（px）才顯示「回到頁首」。 */
+export const BACK_TO_TOP_AFTER = 400
+
+export function showBackToTop(scrollY, threshold = BACK_TO_TOP_AFTER) {
+  return scrollY > threshold
 }

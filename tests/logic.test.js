@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   cardFields, cardText, countHits, filterTerms, formatDuration, formatHours,
   formatWorkDays, gradeCheck, monthlyHours, readingPosition, readinessLevel, resolveService,
-  scrollThumb, sectionProgress
+  scrollEdges, sectionProgress, showBackToTop
 } from '../src/utils/logic.js'
 import { F2, FIELDS, RD, TERMS } from '../src/data/content.js'
 
@@ -146,20 +146,28 @@ describe('閱讀進度', () => {
   })
 })
 
-describe('導覽水平捲軸', () => {
-  it('內容放得下時不顯示', () => {
-    expect(scrollThumb(0, 300, 300)).toEqual({ overflow: false, size: 100, offset: 0 })
-    expect(scrollThumb(0, 301, 300).overflow).toBe(false)
+describe('導覽左右箭頭', () => {
+  it('內容放得下時兩側都不顯示', () => {
+    expect(scrollEdges(0, 300, 300)).toEqual({ overflow: false, canLeft: false, canRight: false })
+    expect(scrollEdges(0, 301, 300).overflow).toBe(false)
   })
 
-  it('滑塊長度依可視比例，起點依捲動位置', () => {
-    expect(scrollThumb(0, 400, 300)).toEqual({ overflow: true, size: 75, offset: 0 })
-    expect(scrollThumb(50, 400, 300)).toEqual({ overflow: true, size: 75, offset: 12.5 })
-    expect(scrollThumb(100, 400, 300)).toEqual({ overflow: true, size: 75, offset: 25 })
+  it('在最左邊只顯示右箭頭，在最右邊只顯示左箭頭', () => {
+    expect(scrollEdges(0, 400, 300)).toEqual({ overflow: true, canLeft: false, canRight: true })
+    expect(scrollEdges(100, 400, 300)).toEqual({ overflow: true, canLeft: true, canRight: false })
   })
 
-  it('彈性捲動超出範圍時滑塊不超出軌道', () => {
-    expect(scrollThumb(-20, 400, 300).offset).toBe(0)
-    expect(scrollThumb(140, 400, 300).offset).toBe(25)
+  it('在中間兩側都顯示，邊界容許 1px 誤差', () => {
+    expect(scrollEdges(50, 400, 300)).toEqual({ overflow: true, canLeft: true, canRight: true })
+    expect(scrollEdges(0.5, 400, 300).canLeft).toBe(false)
+    expect(scrollEdges(99.5, 400, 300).canRight).toBe(false)
+  })
+})
+
+describe('回到頁首', () => {
+  it('捲動超過 400px 才顯示', () => {
+    expect(showBackToTop(0)).toBe(false)
+    expect(showBackToTop(400)).toBe(false)
+    expect(showBackToTop(401)).toBe(true)
   })
 })

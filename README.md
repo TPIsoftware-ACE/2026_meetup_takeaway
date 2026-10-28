@@ -27,16 +27,17 @@ TPIsoftware × OpenAI Select Partner「Meetup 技術小聚」的活動重點整�
 ├── src/
 │   ├── main.js                   # 建立 Vue App
 │   ├── App.vue                   # 組合頁首、各章節、頁尾；啟用捲動淡入
-│   ├── assets/                   # TPIsoftware Logo、OpenAI Select Partner 標章
+│   ├── assets/                   # Logo、OpenAI Select Partner 標章、封面主視覺（桌面／手機）
 │   ├── styles/main.css           # 全站樣式（色彩 token、深色模式、版面）
 │   ├── data/content.js           # 互動區塊的內容資料（文字取自簡報）
 │   ├── utils/logic.js            # 純邏輯：效益試算、練習判定、篩選、自評等級…
 │   ├── composables/
 │   │   ├── useSectionProgress.js # 閱讀進度：目前章節、各段填滿比例（導覽與進度條共用）
-│   │   ├── useScrollThumb.js     # 手機導覽的水平捲軸位置
+│   │   ├── useScrollEdges.js     # 導覽左右兩端是否還有項目（左右箭頭）
+│   │   ├── useIdle.js            # 使用者靜置偵測（回到頁首按鈕變淡）
 │   │   └── useReveal.js          # 捲動進入畫面時淡入
 │   └── components/
-│       ├── layout/               # TheHeader、TheFooter
+│       ├── layout/               # TheHeader、TheFooter、BackToTop
 │       ├── sections/             # 依簡報順序的八個章節
 │       ├── widgets/              # 14 個互動元件
 │       └── common/TabList.vue    # 共用分頁按鈕（v-model）
@@ -103,7 +104,7 @@ npm test
 | --- | --- |
 | `logic.test.js` | 效益試算、時間格式、練習判定、名詞篩選、自評等級、服務選擇、資產卡文字、閱讀進度 |
 | `content.test.js` | 內容資料一致性；導覽與段落連結的錨點都存在 |
-| `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽與閱讀進度條、頁尾聯絡資訊、`TabList`、composable |
+| `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽與閱讀進度條、頁尾聯絡資訊、`TabList`、`BackToTop`、composable |
 | `keynote.test.js` | `StageExplorer`、`PilotChecklist`、`ToolPicker` |
 | `caseOne.test.js` | `WorkflowStepper`、`ReviewQuiz`、`RoleNotes` |
 | `caseTwo.test.js` | `FunctionCases`、`SavingsCalculator`、`WorkflowBuilder`（含剪貼簿） |
@@ -129,7 +130,9 @@ npm test
 
 - 最小字級 14px（含手機版與 SVG 圖示文字）
 - 色彩語意：紫＝AI 負責、琥珀＝人負責、藍＝資料來源、墨色＝產出與下一步
-- 手機版導覽放不下時，下方顯示水平捲軸（自訂樣式，不受手機自動隱藏捲軸影響），提示可左右滑動看其他選項
+- 手機版導覽放不下時，被遮住的那一側出現箭頭與淡出效果，點箭頭可左右捲動
+- 捲動超過 400px 時右下角出現「回到頁首」；螢幕小於 765px 時，靜置 1 秒後按鈕降為 30% 不透明度，避免干擾閱讀
+- 封面主視覺：螢幕小於 765px 改用直式手機版圖片
 - 頁首下方的閱讀進度條：每段對應一個章節（長度依章節篇幅），已讀完的章節填滿，目前章節依捲動進度填入；滑鼠移上顯示章節名稱，點擊可跳段
 - 支援淺色／深色模式與手機版面；尊重系統「減少動態效果」設定
 

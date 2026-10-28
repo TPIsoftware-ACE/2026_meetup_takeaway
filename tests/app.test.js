@@ -5,6 +5,7 @@ import App from '../src/App.vue'
 import TheHeader from '../src/components/layout/TheHeader.vue'
 import TheFooter from '../src/components/layout/TheFooter.vue'
 import TabList from '../src/components/common/TabList.vue'
+import BackToTop from '../src/components/layout/BackToTop.vue'
 import { useSectionProgress } from '../src/composables/useSectionProgress.js'
 import { useReveal } from '../src/composables/useReveal.js'
 
@@ -26,8 +27,12 @@ describe('App', () => {
   it('封面為滿版活動主視覺、位於內容區上方，標題保留給螢幕閱讀器', () => {
     const wrapper = mount(App)
     expect(wrapper.find('h1').classes()).toContain('sr')
-    const cover = wrapper.find('.hero > img.cover')
-    expect(cover.element.nextElementSibling.classList.contains('wrap')).toBe(true)
+    const cover = wrapper.find('.hero > picture > img.cover')
+    expect(cover.element.parentElement.nextElementSibling.classList.contains('wrap')).toBe(true)
+    const mobile = wrapper.find('.hero picture source')
+    expect(mobile.attributes('media')).toBe('(max-width: 764.98px)')
+    expect(mobile.attributes('srcset')).toMatch(/760w, .+ 1254w$/)
+    expect([mobile.attributes('width'), mobile.attributes('height')]).toEqual(['1254', '1254'])
     expect(cover.attributes('sizes')).toBe('100vw')
     expect(cover.attributes('alt')).toContain('拒絕無效導入！')
     expect(cover.attributes('srcset')).toMatch(/1036w, .+ 2073w$/)
@@ -58,20 +63,34 @@ describe('TheHeader', () => {
     expect(links[0].classes()).toContain('on')
   })
 
-  it('導覽放不下時顯示水平捲軸，並隨捲動移動', async () => {
+  it('導覽放不下時顯示左右箭頭，點擊後捲動導覽', async () => {
     const wrapper = mount(TheHeader)
     const nav = wrapper.find('.navlinks').element
-    expect(wrapper.find('.navbox').classes()).not.toContain('is-overflow')
-    expect(wrapper.find('.nav-track').attributes('aria-hidden')).toBe('true')
+    const prev = () => wrapper.find('.nav-arrow.prev')
+    const next = () => wrapper.find('.nav-arrow.next')
+    expect(prev().attributes('hidden')).toBeDefined()
+    expect(next().attributes('hidden')).toBeDefined()
+
     Object.defineProperty(nav, 'scrollWidth', { configurable: true, value: 400 })
     Object.defineProperty(nav, 'clientWidth', { configurable: true, value: 300 })
+    nav.scrollBy = vi.fn()
+    nav.dispatchEvent(new Event('scroll'))
+    await wrapper.vm.$nextTick()
+    expect(prev().attributes('hidden')).toBeDefined()
+    expect(next().attributes('hidden')).toBeUndefined()
+    expect(wrapper.find('.navbox').classes()).toEqual(['navbox', 'can-right'])
+    expect(next().attributes('aria-label')).toBe('往後捲動章節')
+
+    await next().trigger('click')
+    expect(nav.scrollBy).toHaveBeenCalledWith({ left: 180, behavior: 'smooth' })
+
     nav.scrollLeft = 100
     nav.dispatchEvent(new Event('scroll'))
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.navbox').classes()).toContain('is-overflow')
-    const style = wrapper.find('.nav-track i').attributes('style')
-    expect(style).toContain('width: 75%')
-    expect(style).toContain('left: 25%')
+    expect(prev().attributes('hidden')).toBeUndefined()
+    expect(next().attributes('hidden')).toBeDefined()
+    await prev().trigger('click')
+    expect(nav.scrollBy).toHaveBeenLastCalledWith({ left: -180, behavior: 'smooth' })
   })
 
   it('頁首下方的閱讀進度條：每個章節一段，並標示目前章節', () => {
@@ -184,5 +203,50 @@ describe('useReveal', () => {
     vi.stubGlobal('matchMedia', () => ({ matches: true }))
     mount(Host, { attachTo: document.body })
     expect(document.documentElement.classList.contains('rv-on')).toBe(false)
+  })
+})
+
+describe('BackToTop', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    window.scrollY = 0
+  })
+
+  it('捲動超過 400px 才出現', async () => {
+    const wrapper = mount(BackToTop)
+    expect(wrapper.classes()).not.toContain('show')
+    expect(wrapper.attributes('tabindex')).toBe('-1')
+    window.scrollY = 401
+    window.dispatchEvent(new Event('scroll'))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.classes()).toContain('show')
+    expect(wrapper.attributes('tabindex')).toBe('0')
+    expect(wrapper.attributes('aria-label')).toBe('回到頁首')
+  })
+
+  it('靜置 1 秒後標記 idle，有操作就恢復', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(BackToTop)
+    vi.advanceTimersByTime(999)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.classes()).not.toContain('idle')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.classes()).toContain('idle')
+    window.dispatchEvent(new Event('pointermove'))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.classes()).not.toContain('idle')
+    window.dispatchEvent(new Event('scroll'))
+    vi.advanceTimersByTime(1000)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.classes()).toContain('idle')
+  })
+
+  it('點擊後回到頁首', async () => {
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    const wrapper = mount(BackToTop)
+    await wrapper.trigger('click')
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0 })
   })
 })

@@ -1,6 +1,7 @@
 <script setup>
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
+import BackToTop from './components/layout/BackToTop.vue'
 import HeroSection from './components/sections/HeroSection.vue'
 import ThemesSection from './components/sections/ThemesSection.vue'
 import KeynoteSection from './components/sections/KeynoteSection.vue'
@@ -27,4 +28,5 @@ useReveal()
     <ClosingSection />
   </main>
   <TheFooter />
+  <BackToTop />
 </template>
