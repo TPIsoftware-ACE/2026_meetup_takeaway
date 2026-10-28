@@ -52,3 +52,11 @@ describe('內容資料一致性', () => {
     wrapper.unmount()
   })
 })
+
+describe('用語一致', () => {
+  it('頁面不再出現 Operating Model，統一為「營運模式」', () => {
+    const text = mount(App).text()
+    expect(text).not.toContain('Operating Model')
+    expect(TERMS.map(t => t.t)).toContain('營運模式')
+  })
+})

@@ -153,7 +153,7 @@ export const TERMS = [
   { t: '急著 PoC，沒想過 Scale', c: '現象', d: '先回答「到底要測什麼？測完之後呢？」，PoC 才有往下擴大的路。', src: '開場', href: '#overview' },
   { t: 'Start Small', c: '方法', d: '先從 5 個人、5–20 人的小團隊開始，找 3–5 個最有共識的流程。', src: 'Keynote', href: '#k-pilot' },
   { t: '最小邊界', c: '治理', d: '試點前先定好三件事：資料邊界、Human Review、Owner。', src: 'Keynote', href: '#k-pilot' },
-  { t: 'Operating Model', c: '方法', d: '導入的第四階段：人與 AI 的角色互動升級，新型態工作流成為組織運作方式。', src: 'Keynote', href: '#keynote' },
+  { t: '營運模式', c: '方法', d: '導入的第四階段：人與 AI 的角色互動升級，新型態工作流成為組織運作方式。', src: 'Keynote', href: '#keynote' },
   { t: 'Context → Next Action', c: '方法', d: '一條工作拆成 Context、Input、AI Task、人為判斷、Output、Next Action，再決定 AI 負責哪一段。', src: '案例一', href: '#c1-flow' },
   { t: 'Human Review', c: '治理', d: '不只是看錯字，而是確認事實、期限、責任、決議與承諾。AI 可以加速工作，但不能轉移責任。', src: '案例一、案例二', href: '#c1-review' },
   { t: 'Role-aware Output', c: '方法', d: '先問「誰要看？」再決定產出格式。PM、主管、執行者、法遵需要的版本不同。', src: '案例一', href: '#case1' },
