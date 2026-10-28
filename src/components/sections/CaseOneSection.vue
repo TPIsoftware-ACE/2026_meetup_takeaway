@@ -30,7 +30,7 @@ import RoleNotes from '../widgets/RoleNotes.vue'
 
     <div class="block" id="c1-flow">
       <div class="block-head">
-        <h3 class="h3">動手使用 AI 之前，先看工作怎麼進行</h3>
+        <h3 class="h3">將每次的會議變成下一個明確的行動</h3>
         <p>以「10:00 UAT 進度會議」為例，一項工作拆成六個節點。觀察每一個節點，哪個內容可以交給 AI 整理。</p>
       </div>
       <WorkflowStepper />
