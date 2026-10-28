@@ -19,8 +19,19 @@ describe('App', () => {
     const wrapper = mount(App)
     const ids = wrapper.findAll('main > section').map(s => s.attributes('id') || '')
     expect(ids).toEqual(['overview', '', 'keynote', 'case1', 'case2', 'case3', 'ace', ''])
-    expect(wrapper.find('h1').text()).toBe('拒絕無效導入！OpenAI Select Partner帶你打造安全 AI 工作流')
+    expect(wrapper.find('h1').text()).toBe('拒絕無效導入！OpenAI Select Partner 帶你打造安全 AI 工作流')
     expect(wrapper.find('.hero .eyebrow').text()).toBe('Meetup 技術小聚 · TPIsoftware × OpenAI Select Partner')
+  })
+
+  it('封面使用活動主視覺，標題保留給螢幕閱讀器', () => {
+    const wrapper = mount(App)
+    expect(wrapper.find('h1').classes()).toContain('sr')
+    const cover = wrapper.find('.hero img.cover')
+    expect(cover.attributes('alt')).toContain('拒絕無效導入！')
+    expect(cover.attributes('srcset')).toMatch(/1036w, .+ 2073w$/)
+    expect(cover.attributes('width')).toBe('2073')
+    expect(cover.attributes('height')).toBe('758')
+    expect(wrapper.find('.hero .lede').exists()).toBe(false)
   })
 })
 

@@ -137,15 +137,17 @@ section.chapter:first-of-type{border-top:0}
 .btnrow{display:flex;flex-wrap:wrap;gap:8px}
 
 /* hero */
-.hero{padding-block:88px 64px;position:relative;overflow:hidden}
+.hero{padding-block:48px 64px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.2px);background-size:24px 24px;
   -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,0) 75%);mask-image:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,0) 75%)}
 .hero::after{content:"";position:absolute;right:-12%;top:-30%;width:min(720px,80vw);aspect-ratio:1;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,color-mix(in srgb,var(--p2) 70%,transparent) 0,color-mix(in srgb,var(--p1) 40%,transparent) 45%,transparent 70%)}
 .hero .wrap{display:grid;gap:22px;position:relative;z-index:1}
+.cover{display:block;width:100%;height:auto;border-radius:20px;background:#2A1A6E;box-shadow:0 30px 60px -36px rgba(42,26,110,.55),0 0 0 1px var(--line)}
+@media (max-width:640px){.hero{padding-top:28px}.cover{border-radius:14px}}
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.arc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:32px}
+.arc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:12px}
 .arc a{display:flex;flex-direction:column;gap:6px;padding:20px 20px 22px;text-decoration:none;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;transition:transform .5s var(--ease),box-shadow .5s}
 .arc a::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
 .arc a:hover{transform:translateY(-4px);box-shadow:0 16px 40px -20px rgba(42,26,110,.35)}
@@ -469,7 +471,7 @@ footer .team{font-weight:700;color:var(--ink)}
 footer .mail{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--p7);font-family:var(--f-mono);padding:6px 14px;border:1px solid var(--line-2);border-radius:999px;transition:background .3s,border-color .3s}
 footer .mail:hover{background:var(--p1);border-color:var(--p5)}
 footer .mail svg{width:18px;height:18px;flex:none}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* reveal（僅在 JS 啟用、未要求減少動態時生效） */
 .rv-on .rv{opacity:0;transform:translateY(18px)}
