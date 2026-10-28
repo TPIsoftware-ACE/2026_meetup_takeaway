@@ -5,7 +5,7 @@ import App from '../src/App.vue'
 import TheHeader from '../src/components/layout/TheHeader.vue'
 import TheFooter from '../src/components/layout/TheFooter.vue'
 import TabList from '../src/components/common/TabList.vue'
-import { useActiveSection } from '../src/composables/useActiveSection.js'
+import { useSectionProgress } from '../src/composables/useSectionProgress.js'
 import { useReveal } from '../src/composables/useReveal.js'
 
 afterEach(() => {
@@ -44,6 +44,18 @@ describe('TheHeader', () => {
     expect(links.map(a => a.text())).toEqual(['總覽', 'Keynote', '案例一', '案例二', '案例三', 'ACE'])
     expect(links[0].classes()).toContain('on')
   })
+
+  it('頁首下方的閱讀進度條：每個章節一段，並標示目前章節', () => {
+    const wrapper = mount(TheHeader)
+    const bar = wrapper.find('.readbar')
+    expect(bar.attributes('role')).toBe('progressbar')
+    expect(bar.attributes('aria-valuetext')).toMatch(/^目前在「總覽」，已讀 \d+%$/)
+    const segs = bar.findAll('.seg')
+    expect(segs.map(s => s.attributes('data-label'))).toEqual(['總覽', 'Keynote', '案例一', '案例二', '案例三', 'ACE'])
+    expect(segs.map(s => s.attributes('href'))).toEqual(['#overview', '#keynote', '#case1', '#case2', '#case3', '#ace'])
+    expect(segs[0].classes()).toContain('on')
+    expect(segs.every(s => s.attributes('tabindex') === '-1')).toBe(true)
+  })
 })
 
 describe('TheFooter', () => {
@@ -74,18 +86,43 @@ describe('TabList', () => {
   })
 })
 
-describe('useActiveSection', () => {
-  it('依捲動位置回傳目前章節', () => {
-    document.body.innerHTML = '<div id="s1"></div><div id="s2"></div>'
-    Object.defineProperty(document.getElementById('s1'), 'offsetTop', { value: 0 })
-    Object.defineProperty(document.getElementById('s2'), 'offsetTop', { value: 1000 })
+describe('useSectionProgress', () => {
+  function setup() {
+    document.body.innerHTML = '<header></header><div id="s1"></div><div id="s2"></div>'
+    Object.defineProperty(document.querySelector('header'), 'offsetHeight', { configurable: true, value: 64 })
+    Object.defineProperty(document.getElementById('s2'), 'offsetTop', { configurable: true, value: 1000 })
+    Object.defineProperty(document.documentElement, 'scrollHeight', { configurable: true, value: 3000 })
+    window.innerHeight = 800
     let state
-    mount(defineComponent({ setup() { state = useActiveSection(['s1', 's2']); return () => h('div') } }))
+    mount(defineComponent({ setup() { state = useSectionProgress(['s1', 's2']); return () => h('div') } }))
+    return state
+  }
+
+  afterEach(() => { window.scrollY = 0 })
+
+  it('頁面頂端：在第一個章節，第二段尚未開始', () => {
+    const state = setup()
     expect(state.active.value).toBe(0)
+    expect(state.lengths.value).toEqual([1000, 2000])
+    expect(state.fills.value[0]).toBeCloseTo(0.12, 2)
+    expect(state.fills.value[1]).toBe(0)
+  })
+
+  it('捲過第二章節起點後切換章節，前一段填滿', () => {
+    const state = setup()
     window.scrollY = 900
     state.update()
     expect(state.active.value).toBe(1)
-    window.scrollY = 0
+    expect(state.fills.value[0]).toBe(1)
+    expect(state.fills.value[1]).toBeGreaterThan(0)
+  })
+
+  it('捲到底時全部填滿、整體 100%', () => {
+    const state = setup()
+    window.scrollY = 2200
+    state.update()
+    expect(state.fills.value).toEqual([1, 1])
+    expect(state.percent.value).toBe(100)
   })
 })
 

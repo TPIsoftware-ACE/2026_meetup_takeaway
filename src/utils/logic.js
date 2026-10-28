@@ -61,3 +61,25 @@ export function cardFields(fields, values) {
 export function cardText(name, vals) {
   return `【${name}】\n` + vals.map(v => `${v.en}：${v.v || '（待填）'}`).join('\n')
 }
+
+/**
+ * 閱讀位置（頁面座標）：從視窗頂端加上頁首偏移開始，隨捲動比例往視窗底部推進；
+ * 捲到頂時接近頁首下緣，捲到底時等於頁面總高，最後一個章節因此一定能填滿。
+ */
+export function readingPosition(scrollY, viewportHeight, docHeight, offset) {
+  const max = Math.max(docHeight - viewportHeight, 1)
+  const p = Math.min(Math.max(scrollY / max, 0), 1)
+  return scrollY + offset + p * (viewportHeight - offset)
+}
+
+/** 依各章節起點與頁面總高，算出每段長度、填滿比例（0–1）、目前章節與整體百分比。 */
+export function sectionProgress(starts, docHeight, pos) {
+  const ends = starts.slice(1).concat(docHeight)
+  const lengths = starts.map((s, i) => Math.max(ends[i] - s, 1))
+  const fills = starts.map((s, i) => Math.min(Math.max((pos - s) / lengths[i], 0), 1))
+  let active = 0
+  starts.forEach((s, i) => { if (pos >= s) active = i })
+  const total = lengths.reduce((a, b) => a + b, 0)
+  const percent = Math.round(fills.reduce((a, f, i) => a + f * lengths[i], 0) / total * 100)
+  return { lengths, fills, active, percent }
+}

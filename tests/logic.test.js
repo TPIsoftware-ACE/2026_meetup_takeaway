@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
   cardFields, cardText, countHits, filterTerms, formatDuration, formatHours,
-  formatWorkDays, gradeCheck, monthlyHours, readinessLevel, resolveService
+  formatWorkDays, gradeCheck, monthlyHours, readingPosition, readinessLevel, resolveService,
+  sectionProgress
 } from '../src/utils/logic.js'
 import { F2, FIELDS, RD, TERMS } from '../src/data/content.js'
 
@@ -109,5 +110,38 @@ describe('Workflow 資產卡', () => {
     expect(text).toContain('Purpose：追蹤進度')
     expect(text).toContain('Owner：（待填）')
     expect(text.split('\n')).toHaveLength(8)
+  })
+})
+
+describe('閱讀進度', () => {
+  it('閱讀位置：頂端為頁首偏移，底部等於頁面總高', () => {
+    expect(readingPosition(0, 800, 5000, 120)).toBe(120)
+    expect(readingPosition(4200, 800, 5000, 120)).toBe(5000)
+    expect(readingPosition(2100, 800, 5000, 120)).toBe(2100 + 120 + 0.5 * 680)
+  })
+
+  it('捲動超出範圍時仍維持在頁面內', () => {
+    expect(readingPosition(-50, 800, 5000, 120)).toBe(70)
+    expect(readingPosition(9999, 800, 800, 120)).toBe(9999 + 800)
+  })
+
+  it('依章節起點算出長度、填滿比例與目前章節', () => {
+    const r = sectionProgress([0, 1000, 3000], 4000, 2000)
+    expect(r.lengths).toEqual([1000, 2000, 1000])
+    expect(r.fills).toEqual([1, 0.5, 0])
+    expect(r.active).toBe(1)
+    expect(r.percent).toBe(50)
+  })
+
+  it('剛好在章節起點即算進入該章節', () => {
+    expect(sectionProgress([0, 1000], 2000, 1000).active).toBe(1)
+    expect(sectionProgress([0, 1000], 2000, 999).active).toBe(0)
+  })
+
+  it('頁面底部時全部填滿', () => {
+    const r = sectionProgress([0, 1000, 3000], 4000, 4000)
+    expect(r.fills).toEqual([1, 1, 1])
+    expect(r.active).toBe(2)
+    expect(r.percent).toBe(100)
   })
 })

@@ -67,6 +67,19 @@ button{font:inherit;color:inherit}
 .navlinks a{text-decoration:none;font-size:14px;padding:6px 14px;border-radius:999px;color:var(--ink-2);white-space:nowrap;transition:background .3s,color .3s}
 .navlinks a:hover{color:var(--p7);background:var(--p1)}
 .navlinks a.on{color:#fff;background:var(--grad);box-shadow:0 6px 16px -8px var(--glow)}
+
+/* reading progress：每段對應一個章節，長度依章節高度 */
+.readbar{position:absolute;left:0;right:0;bottom:-1px;height:4px;display:flex;gap:3px;transition:height .3s var(--ease)}
+.readbar:hover{height:8px}
+.readbar .seg{position:relative;flex:1 1 0;min-width:0;display:block;background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.readbar .seg i{position:absolute;inset:0;background:var(--grad);transform:scaleX(0);transform-origin:left center;transition:transform .2s linear}
+.readbar .seg.on{background:color-mix(in srgb,var(--p7) 18%,transparent)}
+.readbar .seg::after{content:attr(data-label);position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px);font-size:14px;line-height:1.4;white-space:nowrap;padding:3px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--p3);color:var(--p7);box-shadow:0 8px 20px -12px rgba(42,26,110,.45);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s var(--ease)}
+.readbar .seg:hover::after{opacity:1;transform:translate(-50%,0)}
+.readbar .seg:first-child::after{left:16px;transform:translate(0,-4px)}
+.readbar .seg:first-child:hover::after{transform:none}
+.readbar .seg:last-child::after{left:auto;right:16px;transform:translate(0,-4px)}
+.readbar .seg:last-child:hover::after{transform:none}
 @media (max-width:640px){
   html{scroll-padding-top:128px}
   .top .wrap{flex-wrap:wrap;gap:8px 10px;padding-block:10px}
