@@ -16,9 +16,7 @@
 
     <div class="block">
       <div class="block-head">
-        <div class="eyebrow">簡報分析 · 三場分享共同的三條線</div>
-        <h2 class="h2">講者不同，反覆出現的是同三件事</h2>
-        <p>把整份簡報攤開來看，每一段都在回答同樣的三個問題。點標籤可以跳到出現的段落。</p>
+        <div class="eyebrow">講座精華摘要</div>
       </div>
       <div class="grid g3">
         <div class="card thread">
