@@ -15,7 +15,8 @@ const afterWidth = computed(() => `${Math.max(f.value.afterMin / f.value.beforeM
   <div class="split">
     <div class="card" style="display:grid;gap:12px;align-content:start;min-width:0">
       <b style="font-size:18px">{{ f.title }}</b>
-      <p class="beforeline"><b>BEFORE</b>{{ f.before }}</p>
+      <span class="eyebrow">BEFORE</span>
+      <p class="beforeline">{{ f.before }}</p>
       <span class="eyebrow">AFTER</span>
       <div class="flow">
         <template v-for="(n, i) in f.flow" :key="i">

@@ -315,7 +315,6 @@ button.node.past{opacity:.55}
 .split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:stretch}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .beforeline{font-size:15px;color:var(--ink-2);padding:12px 14px;border:1px dashed var(--line-2);border-radius:12px}
-.beforeline b{color:var(--muted);font-family:var(--f-mono);font-size:14px;font-weight:500;margin-right:8px;letter-spacing:.06em}
 .split .eyebrow{color:var(--p7)}
 .metric{display:grid;gap:6px}
 .metric .big{font-size:clamp(36px,5vw,52px);line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.08em}

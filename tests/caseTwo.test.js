@@ -10,6 +10,10 @@ describe('FunctionCases 三個職能', () => {
   it('預設顯示專案經理的流程與量化效益', () => {
     const wrapper = mount(FunctionCases)
     expect(wrapper.find('.split b').text()).toBe('從「會議紀錄」到「推進工作」')
+    const labels = wrapper.findAll('.split > .card')[0].findAll('.eyebrow')
+    expect(labels.map(l => l.text())).toEqual(['BEFORE', 'AFTER'])
+    expect(labels[0].element.nextElementSibling.classList.contains('beforeline')).toBe(true)
+    expect(wrapper.find('.beforeline').text()).toBe('Meeting → 逐字稿 → 人工整理 → 會議紀錄，流程在紀錄寫完時就結束。')
     expect(wrapper.findAll('.flow .node')).toHaveLength(5)
     expect(wrapper.find('.metric .big').text()).toBe('1 小時→5 分鐘')
     expect(wrapper.find('.timebar .after i').attributes('style')).toContain(`width: ${5 / 60 * 100}%`)
