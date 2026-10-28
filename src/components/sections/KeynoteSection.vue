@@ -10,7 +10,7 @@ import ToolPicker from '../widgets/ToolPicker.vue'
     <div class="chap-head">
       <div class="eyebrow">Keynote · 產業趨勢實務</div>
       <h2 class="h2">Start Small. Work Smarter.<br>Scale What Works.</h2>
-      <div class="speaker"><b>Henry Li</b><span>Head of Enterprise AI Advisory &amp; Solutions · TPIsoftware</span></div>
+      <div class="speaker"><b>Henry Li</b><span>Head of Enterprise AI Advisory &amp; Solutions</span></div>
     </div>
 
     <div class="block" id="k-signals">

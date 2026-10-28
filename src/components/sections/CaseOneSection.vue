@@ -10,7 +10,7 @@ import RoleNotes from '../widgets/RoleNotes.vue'
     <div class="chap-head">
       <div class="eyebrow">案例一 · 從對話到工作應用</div>
       <h2 class="h2">一條工作，到底怎麼跟 AI 一起完成？</h2>
-      <div class="speaker"><b>Tim</b><span>AI Strategy Planner · ACE AI Consulting &amp; Enablement</span></div>
+      <div class="speaker"><b>Tim</b><span>AI Strategy Planner</span></div>
     </div>
 
     <div class="block">

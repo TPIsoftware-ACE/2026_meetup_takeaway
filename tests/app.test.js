@@ -250,3 +250,15 @@ describe('BackToTop', () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0 })
   })
 })
+
+describe('講者資訊', () => {
+  it('Keynote 與各案例只顯示講者名稱與職稱', () => {
+    const speakers = mount(App).findAll('.speaker').map(s => [s.find('b').text(), s.find('span').text()])
+    expect(speakers).toEqual([
+      ['Henry Li', 'Head of Enterprise AI Advisory & Solutions'],
+      ['Tim', 'AI Strategy Planner'],
+      ['Tim', 'AI Strategy Planner'],
+      ['Blaze', 'Principal Engineer']
+    ])
+  })
+})

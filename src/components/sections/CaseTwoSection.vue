@@ -10,7 +10,7 @@ import WorkflowBuilder from '../widgets/WorkflowBuilder.vue'
     <div class="chap-head">
       <div class="eyebrow">案例二 · 從個人工具到組織規格化應用</div>
       <h2 class="h2">一個人會用 AI，<br>不代表組織已經會用 AI</h2>
-      <div class="speaker"><b>Tim</b><span>AI Strategy Planner · ACE AI Consulting &amp; Enablement</span></div>
+      <div class="speaker"><b>Tim</b><span>AI Strategy Planner</span></div>
     </div>
 
     <div class="block">
