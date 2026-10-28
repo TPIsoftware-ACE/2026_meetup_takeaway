@@ -23,7 +23,8 @@ TPIsoftware × OpenAI Select Partner「Meetup 技術小聚」的活動重點整�
 
 ```
 .
-├── index.html                    # Vite 進入點（頁面標題、字型）
+├── index.html                    # Vite 進入點（頁面標題、網站圖示、字型）
+├── public/                       # 網站圖示（favicon、apple-touch-icon），原樣複製到建置結果
 ├── src/
 │   ├── main.js                   # 建立 Vue App
 │   ├── App.vue                   # 組合頁首、各章節、頁尾；啟用捲動淡入
@@ -103,6 +104,7 @@ npm test
 | 測試檔 | 範圍 |
 | --- | --- |
 | `logic.test.js` | 效益試算、時間格式、練習判定、名詞篩選、自評等級、服務選擇、資產卡文字、閱讀進度 |
+| `html.test.js` | `index.html` 的頁面標題與網站圖示 |
 | `content.test.js` | 內容資料一致性；導覽與段落連結的錨點都存在 |
 | `app.test.js` | 章節順序、標題、Logo 與合作夥伴標章、導覽與閱讀進度條、頁尾聯絡資訊、`TabList`、`BackToTop`、composable |
 | `keynote.test.js` | `StageExplorer`、`PilotChecklist`、`ToolPicker` |
