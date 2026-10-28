@@ -18,7 +18,7 @@ import ToolPicker from '../widgets/ToolPicker.vue'
         <h3 class="h3">再大型的公司，也是從具體的工作開始</h3>
       </div>
       <div class="grid g3">
-        <div class="card signal"><span class="what">SIGNAL 01 · 全球企業</span><span class="num">&gt; 1,000,000,000</span><b>OpenAI customers</b><p class="small">AI 已從少數實驗，進入跨產業的日常工作與產品。</p></div>
+        <div class="card signal"><span class="what">SIGNAL 01 · 全球企業</span><span class="num">10 億</span><b>OpenAI customers</b><p class="small">AI 已從少數實驗，進入跨產業的日常工作與產品。</p></div>
         <div class="card signal"><span class="what">SIGNAL 02 · 大型企業方法</span><span class="num">3,000 → 100,000+</span><b>BBVA employees</b><p class="small">先小規模導入、學習、訓練與治理，再逐步擴大。</p></div>
         <div class="card signal"><span class="what">SIGNAL 03 · 台灣產業政策</span><span class="num">311 億元</span><b>2026 AI 新十大建設預算</b><p class="small">政策重點從發展 AI，走向百工百業落地與中小微企業轉型。</p></div>
       </div>
