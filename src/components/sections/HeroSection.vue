@@ -34,7 +34,7 @@ import mobileSmall from '../../assets/cover-mobile-760.webp'
       <a href="#keynote"><span class="eyebrow">Keynote · Henry</span><span class="q">從最簡單的開始嘗試</span><span class="t">產業趨勢與「從 5 個人開始」的導入方法</span></a>
       <a href="#case1"><span class="eyebrow">案例一 · Tim</span><span class="q">讓 AI 一起工作</span><span class="t">從對話到工作應用，把 AI 放進工作流動的位置</span></a>
       <a href="#case2"><span class="eyebrow">案例二 · Tim</span><span class="q">建立可複用工作流程</span><span class="t">從個人工具到可複用的組織 Workflow</span></a>
-      <a href="#case3"><span class="eyebrow">案例三 · Blaze</span><span class="q">讓靜態文件動起來</span><span class="t">用 Codex 把企業文件轉成互動介面</span></a>
+      <a href="#case3"><span class="eyebrow">案例三 · Blaze</span><span class="q">把複雜文件變得更好理解</span><span class="t">用 Codex 把企業文件轉成互動介面</span></a>
       <a href="#ace"><span class="eyebrow">ACE 顧問服務</span><span class="q">讓 ACE 陪你一起完成</span><span class="t">平台＋陪跑，找到適合的下一步</span></a>
     </nav>
   </div>
