@@ -16,7 +16,7 @@ const progressText = computed(() => `目前在「${NAV[active.value].label}」�
   <header class="top">
     <div class="wrap">
       <div class="brands">
-        <a class="brand" href="#overview"><img :src="logo" alt="TPIsoftware" width="1528" height="188"></a>
+        <a class="brand" href="https://www.tpisoftware.com/chatgpt-enterprise" target="_blank" rel="noopener" aria-label="TPIsoftware ChatGPT Enterprise（另開新視窗）"><img :src="logo" alt="TPIsoftware" width="1528" height="188"></a>
         <img class="partner" :src="partnerBadge" alt="OpenAI Select Partner" width="1125" height="531">
       </div>
       <!-- 導覽放不下時（手機版），兩側出現箭頭提示還有其他章節 -->

@@ -43,10 +43,12 @@ describe('App', () => {
 })
 
 describe('TheHeader', () => {
-  it('顯示 TPIsoftware Logo 並連回頁首', () => {
+  it('顯示 TPIsoftware Logo，連到公司 ChatGPT Enterprise 頁面並另開新視窗', () => {
     const wrapper = mount(TheHeader)
     const brand = wrapper.find('a.brand')
-    expect(brand.attributes('href')).toBe('#overview')
+    expect(brand.attributes('href')).toBe('https://www.tpisoftware.com/chatgpt-enterprise')
+    expect(brand.attributes('target')).toBe('_blank')
+    expect(brand.attributes('rel')).toContain('noopener')
     expect(brand.find('img').attributes('alt')).toBe('TPIsoftware')
   })
 
